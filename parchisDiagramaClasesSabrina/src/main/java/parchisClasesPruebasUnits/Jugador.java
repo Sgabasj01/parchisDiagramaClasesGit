@@ -10,6 +10,8 @@ public class Jugador {
 
 	private String nombre;
 	private Tablero tablero;
+	private Usuario usuario;
+    private Ficha[] fichas = new Ficha[2];
 	
 	public Jugador(String nombre, Tablero tablero) {
 		
