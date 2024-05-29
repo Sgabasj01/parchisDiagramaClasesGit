@@ -13,12 +13,26 @@ public class Jugador {
 	private Usuario usuario;
     private Ficha[] fichas = new Ficha[2];
 	
-	public Jugador(String nombre, Tablero tablero) {
+	public Jugador(String nombre, Tablero tablero, Usuario usuario) {
 		
 		this.nombre = nombre;
 		this.tablero = tablero;
+		this.usuario = usuario;
+	    this.fichas[0] = new Ficha(0); 
+	    this.fichas[1] = new Ficha(0);
 		
 	}
+	
+	 public Usuario getUsuario() {
+		 
+	        return usuario;
+	    }
+
+     public Ficha[] getFichas() {
+    	 
+        return fichas;
+    }
+	
 	
 	public void tirarDado(Dado d) {
 		
@@ -52,13 +66,19 @@ public class Jugador {
 		return posicion;
 		
 	}
-	
-	public void moverFicha(int cs) {
-		
-		int origen = consultarTablero();
-		tablero.cambiarFicha(origen, origen+cs);;
-		
-	}
+	 public void moverFicha(Ficha ficha, int casillas) {
+		  
+		 int posicionActual = ficha.getPosicion();
+	        int nuevaPosicion = posicionActual + casillas;
+
+	        if (nuevaPosicion >= tablero.consultarNumCasillas()) {
+	            nuevaPosicion = tablero.consultarNumCasillas() - 1; 
+	        }
+
+	        ficha.setPosicion(nuevaPosicion);
+	        tablero.cambiarFicha(posicionActual, nuevaPosicion);
+	    }
+	    
 	
 	public String getNombre(){
 		

@@ -15,7 +15,8 @@ public class Juego {
 		
 		Tablero tablero = new Tablero();
 		Dado dado1 = new Dado();
-		Jugador yo = new Jugador("Angel", tablero);
+		Usuario usuario = new Usuario("Sabrina", "Sgabasj@gmail.com");
+		Jugador yo = new Jugador("Sabrina", tablero, usuario);
 		
 		do {
 
@@ -24,7 +25,7 @@ public class Juego {
 
 		} while (yo.consultarDado(dado1) != 5);
 
-		yo.moverFicha(1);
+		yo.moverFicha(yo.getFichas()[0], 1);
 		System.out.println("La ficha sale de casa");
 		
 		Dado dado2 = new Dado();
@@ -38,7 +39,7 @@ public class Juego {
 			tirada = yo.consultarDado(dado1)+yo.consultarDado(dado2);
 			
 			System.out.println("Ha salido el " + tirada);		
-			yo.moverFicha(tirada);
+			yo.moverFicha(yo.getFichas()[0], tirada);
 			
 			System.out.println("La ficha esta en la casilla "+yo.consultarTablero());
 
